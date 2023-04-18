@@ -4,7 +4,7 @@ import Anime from './components/Anime'
 import './App.css'
 
 const api = axios.create({
-  baseURL: 'https://animetowatch.onrender.com/',
+  baseURL: 'https://animetowatch.onrender.com',
 })
 
 function App() {
