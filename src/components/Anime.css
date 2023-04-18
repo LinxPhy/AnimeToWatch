@@ -196,12 +196,11 @@ main{
     .main{
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: minmax(0, 2fr) fit-content minmax(0, 1fr) ;
+        grid-template-rows: minmax(0, 2fr)  minmax(0, 1fr) minmax(0, 1fr) ;
     }
 
     .description {
-        text-overflow: ellipsis;
-        overflow: hidden;
+        display: none;
     }
 
     .image{
@@ -210,6 +209,10 @@ main{
 
         grid-row-start: 1;
         grid-row-end: 2;
+    }
+
+    .image img{
+        object-fit: contain;
     }
 
     .content .theme{
@@ -226,9 +229,28 @@ main{
         display: none;
     }
 
+    .info{
+        grid-column-start: 1;
+        grid-column-end: 3;
+
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+
+    .info > div{
+        flex-basis: 100%;
+    }
+
+    .info-title{
+        flex-basis: 100%;
+    }
+
     .navigation{
         grid-column-start: 1;
         grid-column-end: 3;
+
+        grid-row-start: 3;
+        grid-row-end: 4;
     }
 
 }

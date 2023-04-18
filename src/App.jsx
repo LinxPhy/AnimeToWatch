@@ -5,6 +5,7 @@ import './App.css'
 
 const api = axios.create({
   baseURL: 'https://animetowatch.onrender.com',
+  // baseURL: 'http://localhost:3000',
 })
 
 function App() {
