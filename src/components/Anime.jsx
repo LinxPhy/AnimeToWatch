@@ -1,7 +1,7 @@
 
 import './Anime.css';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Crunchyroll from '../icons/crunchyroll.webp';
 import Youtube from '../icons/youtube.webp';
 import MAL from '../icons/MAL.png';
@@ -19,6 +19,7 @@ function Anime(props) {
     const data = props.data;
     const navigate = useNavigate();
     const [showGif, setShowGif] = useState(false);
+    const gifRef = useRef(null);
 
     function nextAnime() {
         props.nextAnime();
@@ -59,7 +60,16 @@ function Anime(props) {
 
             e.currentTarget.removeEventListener('touchmove', handeTocuhMove);
         }
+
+        function handleAnimationEnd(){
+            setShowGif(false);
+        }
     }
+
+    function handleGifEnd() {
+        gifRef.current.removeEventListener('ended', handleGifEnd);
+        setShowGif(false);
+      }
 
 
     return (
@@ -88,7 +98,7 @@ function Anime(props) {
                 <div className='image' onMouseOver={() => setShowGif(true)} onMouseOut={() => setShowGif(false)}>
 
                     {showGif ? 
-                        <img src={gif_link + data.gif + extension} loading='lazy' alt={data.title} /> 
+                        <img src={gif_link + data.gif + extension} loading='lazy' alt={data.title} ref={gifRef} /> 
                     : 
                         <img src={image_link + data.image + extension} loading='lazy' alt={data.title} />
                     }

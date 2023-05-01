@@ -152,7 +152,32 @@ h1{
     .Homepage{
         height: 100vh;
         flex-direction: column;
+        padding: 0px;
     }
+
+    .homepage-title{
+        justify-content: flex-start;
+        gap: 10px;
+    }
+
+    .homepage-title p{
+        font-size: 15px;
+        line-height: normal;
+    }
+
+    .homepage-categories{
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+    }
+
+    .Homepage .homepage-categories a{
+        min-width: 250px;
+    }
+
+    /* .homepage-categories a{
+        width: 120px;
+        height: 100%;
+    } */
 
 }
     

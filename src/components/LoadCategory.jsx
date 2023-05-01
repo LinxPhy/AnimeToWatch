@@ -10,6 +10,7 @@ function LoadCategory(props) {
 
   const api = axios.create({
     baseURL: 'https://animetowatch.onrender.com/' + props.category
+    // baseURL: import.meta.env.VITE_STAGING_SERVER_LINK + props.category
   })
 
   const [anime, setAnime] = useState([])
