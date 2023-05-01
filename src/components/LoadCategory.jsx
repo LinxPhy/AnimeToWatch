@@ -7,7 +7,7 @@ import Anime from './Anime'
 function LoadCategory(props) {
 
   const api = axios.create({
-    baseURL: import.meta.env.VITE_PRODUCTION_SERVER_LINK + '/' + props.category
+    baseURL: import.meta.env.VITE_PRODUCTION_SERVER_LINK + props.category
   })
 
   const [anime, setAnime] = useState([])
