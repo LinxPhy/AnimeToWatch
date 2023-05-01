@@ -2,7 +2,7 @@
 header{
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid var(--blue_borderColour);
     height: 100px;
 }
 
@@ -12,7 +12,7 @@ header > div{
     align-items: center;
     justify-content: center;
     padding: 20px;
-    border-left: 1px solid white;
+    border-left: 1px solid var(--blue_borderColour);
     text-transform: uppercase;
 }
 
@@ -80,17 +80,25 @@ main{
 .content{
     display: flex;
     flex-direction: column;
+    border-left: 1px solid var(--blue_borderColour);
+}
+
+.content > div:first-child{
+    flex-basis: 40%;
+}
+
+.content > div:last-child{
+    flex-basis: 60%;
 }
 
 .content > div{
-    flex-grow: 1;
     padding: 20px;
 }
 
 .theme{
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid var(--blue_borderColour);
 }
 
 .theme > div{
@@ -122,6 +130,7 @@ main{
 .info{
     display: flex;
     text-transform: uppercase;
+    border-top: 1px solid var(--blue_borderColour);
 }
 
 .info > div{
@@ -142,7 +151,7 @@ main{
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
-    border-left: 1px solid white;
+    border-left: 1px solid var(--blue_borderColour);
 
 }
 
@@ -160,11 +169,14 @@ main{
 .navigation{
     display: flex;
     flex-direction: row;
-    border-top: 1px solid white;
-    border-left: 1px solid white;
+    border-top: 1px solid var(--blue_borderColour);
+    border-left: 1px solid var(--blue_borderColour);
+    user-select: none;
 }
 
-
+.navigation img{
+    
+}
 
 .navigation > div {
     flex-grow: 1;
@@ -176,13 +188,37 @@ main{
 }
 
 .navigation > div:hover{
-    background-color: rgb(30, 27, 33);
+    background-color: #1e1b21;
     cursor: pointer;
 }
 
 /* _______________________________________RESPONSIVENESS______________________________________________ */
 
 
+@media screen and (max-width: 768px) {
+    
+    header{
+        display: none;
+    }
+
+    main{
+        display: grid;
+        grid-template-columns: 1fr;
+        /* grid-template-rows: minmax(0, 2fr)  minmax(0, 1fr) minmax(0, 1fr) ; */
+    }
+
+    .theme-title{
+        display: none;
+    }
+
+    .themes{
+        display: flex;
+        flex-direction: row;
+    }
+
+}
+
+/* 
 @media screen and (max-width: 768px) {
 
     .header-about, .header-info{
@@ -253,4 +289,4 @@ main{
         grid-row-end: 4;
     }
 
-}
+} */

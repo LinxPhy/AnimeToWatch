@@ -1,57 +1,29 @@
 import { useEffect, useState } from 'react'
-import axios from 'axios'
-import Anime from './components/Anime'
-import './App.css'
+import { Routes, Route } from "react-router-dom"
 
-const api = axios.create({
-  baseURL: 'https://animetowatch.onrender.com',
-  // baseURL: 'http://localhost:3000',
-})
+import Home from './pages/Home'
+import Action from './pages/Action'
+import Mystery from './pages/Mystery'
+import Romance from './pages/Romance'
+import Classics from './pages/Classics'
+import SliceOfLife from './pages/SliceOfLife'
+import Sport from './pages/Sport'
+import './App.css'
 
 function App() {
 
-  const [anime, setAnime] = useState([])
-  const [dataLoaded, setDataLoaded] = useState(false)
-  const [currentAnime, setCurrentAnime] = useState(0)
-
-  const getAnime = async () => {
-
-    await api.get('/').then(res => {
-      setAnime(res.data)
-
-    }).catch(err => console.log(err))
-
-    setDataLoaded(true)
-  }
-
-  function nextAnime() {
-    if (currentAnime < anime.length - 1) {
-      setCurrentAnime(currentAnime + 1)
-    }
-  }
-
-  function previousAnime() {
-    if (currentAnime > 0) {
-      setCurrentAnime(currentAnime - 1)
-    }
-  }
-
-  useEffect(() => {
-    getAnime()
-  }, [])
-
-  if (!dataLoaded) {
-    return <div>Loading...</div>
-  }
-
-  return (
-    <div className="container">
-
-      { dataLoaded && (
-        <Anime key={anime.id} data={anime[currentAnime]} nextAnime={nextAnime} previousAnime={previousAnime} />
-      )}  
-    </div>
+  return(
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/10-action-anime-to-watch" element={<Action />} />
+      <Route path="/10-mystery-anime-to-watch" element={<Mystery />} />
+      <Route path="/10-romance-anime-to-watch" element={<Romance />} />
+      <Route path="/10-classics-anime-to-watch" element={<Classics />} />
+      <Route path="/10-slice-of-life-anime-to-watch" element={<SliceOfLife />} />
+      <Route path="/10-sport-anime-to-watch" element={<Sport />} />
+    </Routes>
   )
+
 }
 
 export default App

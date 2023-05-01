@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const AnimeList = require('./AnimeList');
 const admin = require('firebase-admin');
 const ServiceAccount = require('./ServiceAccount.json')
 const app = express();
@@ -21,12 +20,27 @@ app.use(cors(
     }
 ));
 
-app.get('/', async(req, res) => {
-
+app.get('/action', async(req, res) => {
+    
+    const Action = require('./animeLists/Action.js') 
     res.setHeader('Content-Type', 'application/javascript');
-    res.send(AnimeList);
+    res.send(Action);
 
 });
+
+app.get('/mystery', async(req, res) => {
+
+    const Mystery = require('./animeLists/Mystery.js')
+    res.setHeader('Content-Type', 'application/javascript');
+    res.send(Mystery);
+})
+
+app.get('/romance', async(req, res) => {
+
+    const Romance = require('./animeLists/Romance.js')
+    res.setHeader('Content-Type', 'application/javascript');
+    res.send(Romance);
+})
 
 app.listen(3000, () => {
     console.log("Server started on port 3000");

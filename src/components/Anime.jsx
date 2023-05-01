@@ -1,11 +1,14 @@
 
 import './Anime.css';
+import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react'
 import Crunchyroll from '../icons/crunchyroll.webp';
 import Youtube from '../icons/youtube.webp';
 import MAL from '../icons/MAL.png';
 import LeftIcon from '../icons/left_icon.png';
 import RightIcon from '../icons/right_icon.png';
+import { useNavigate } from 'react-router-dom';
+import GIF from '../gifs/GIF_merge.gif';
 
 const image_link = 'https://firebasestorage.googleapis.com/v0/b/animetowatch-634b6.appspot.com/o/images%2F'
 const gif_link = 'https://firebasestorage.googleapis.com/v0/b/animetowatch-634b6.appspot.com/o/gifs%2F'
@@ -14,6 +17,7 @@ const extension = '?alt=media'
 function Anime(props) {
 
     const data = props.data;
+    const navigate = useNavigate();
     const [showGif, setShowGif] = useState(false);
 
     function nextAnime() {
@@ -24,15 +28,28 @@ function Anime(props) {
         props.previousAnime();
     }
 
+    function keyDownEvent(e) {
+
+        if (e.key == 'ArrowLeft'){
+            previousAnime();
+        }
+        
+        else if (e.key == 'Escape'){
+            navigate('/')
+        }
+    }
+
+    
+
     return (
-        <section className="anime" onKeyDown={(e) => { if (e.key === 'ArrowLeft') { previousAnime; } }} onKeyUp={(e) => { if (e.key === 'ArrowRight') { nextAnime; } }} tabIndex={0}>
+        <section className="anime" onKeyDown={(e) => keyDownEvent(e)} onKeyUp={(e) => { if (e.key === 'ArrowRight') { nextAnime(); } }} tabIndex={0}>
             <header>
                 <div className="header-title">
                     10 Anime to watch
                 </div>
 
                 <div className='header-about'>
-                    <p>About</p>
+                    <Link to={'/'}><p>HomePage</p></Link>
                     <a href='https://myanimelist.net/topanime.php'><p className='header-about-item2'>AnimeList</p></a>
                 </div>
 
@@ -43,7 +60,7 @@ function Anime(props) {
                 </div>
 
                 <div className="header-info">
-                    <a href='https://anime-sanctuary.netlify.app/'>More</a>
+                    Credits
                 </div>
             </header>
             <main>
