@@ -198,6 +198,13 @@ main{
 
 @media screen and (max-width: 768px) {
     
+    body {
+        margin-top: 0 !important;
+      }
+    #navbar {
+    display: none;
+    }
+
     header{
         display: none;
     }
@@ -229,6 +236,7 @@ main{
         position: sticky;
         align-self: start;
         height: 100%;
+        overflow: hidden;
     }
 
     .content .theme .theme-title{
