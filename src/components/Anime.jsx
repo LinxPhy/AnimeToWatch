@@ -39,10 +39,31 @@ function Anime(props) {
         }
     }
 
-    
+    function handleOnTouch(e) {
+        const x = e.touches[0].clientX;
+        const y = e.touches[0].clientY;
+
+        e.currentTarget.addEventListener('touchmove', handeTocuhMove);
+
+        function handeTocuhMove(e) {
+            const xDiff = x - e.touches[0].clientX;
+            const yDiff = y - e.touches[0].clientY;
+
+            if (Math.abs(xDiff) > Math.abs(yDiff)) {
+                if (xDiff > 0) {
+                    nextAnime();
+                } else {
+                    previousAnime();
+                }
+            }
+
+            e.currentTarget.removeEventListener('touchmove', handeTocuhMove);
+        }
+    }
+
 
     return (
-        <section className="anime" onKeyDown={(e) => keyDownEvent(e)} onKeyUp={(e) => { if (e.key === 'ArrowRight') { nextAnime(); } }} tabIndex={0}>
+        <section className="anime" onKeyDown={(e) => keyDownEvent(e)} onKeyUp={(e) => { if (e.key === 'ArrowRight') { nextAnime(); } }}  onTouchStart={(e) => handleOnTouch(e)} tabIndex={0}>
             <header>
                 <div className="header-title">
                     10 Anime to watch

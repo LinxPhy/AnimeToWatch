@@ -14,8 +14,8 @@ app.use(express.json())
 app.use(express.static(path.join(__dirname, 'src')))
 app.use(cors(
     {
-        origin: 'https://youranimetowatch.netlify.app',
-        // origin: 'http://localhost:5173',
+        // origin: ',
+        origin: ['https://youranimetowatch.netlify.app','https://ee82-92-0-235-137.ngrok-free.app', 'http://localhost:5173'],
         method: ['GET', 'POST'],
     }
 ));
