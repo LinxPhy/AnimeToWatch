@@ -6,8 +6,10 @@ import Anime from './Anime'
 
 function LoadCategory(props) {
 
+  console.log(import.meta.env.VITE_PRODUCTION_SERVER_LINK + props.category)
+
   const api = axios.create({
-    baseURL: import.meta.env.VITE_PRODUCTION_SERVER_LINK + props.category
+    baseURL: 'https://animetowatch.onrender.com/' + props.category
   })
 
   const [anime, setAnime] = useState([])
